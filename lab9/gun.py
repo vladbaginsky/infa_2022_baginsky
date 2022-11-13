@@ -64,7 +64,7 @@ class Ball:
             self.vy -= 1
 
         self.x += self.vx
-        self.y -= self.vy 
+        self.y -= self.vy
         self.vx *= 0.99
         self.vy *= 0.8
 
@@ -90,7 +90,10 @@ class Ball:
             В противном случае возвращает False.
         """
 
-        if (self.x - obj.x) ** 2 + (self.y - obj.y) ** 2 < (obj.r) ** 2 + (self.r) ** 2:
+        delta_r = (obj.r) ** 2 + (self.r) ** 2
+        delta_co = (self.x - obj.x) ** 2 + (self.y - obj.y) ** 2
+
+        if delta_co < delta_r:
             return True
         else:
             return False
@@ -146,8 +149,8 @@ class Gun:
             self.screen,
             BLACK,
             (self.x, self.y),
-            (self.x + self.f2_power / 1.5 * math.cos(self.an),
-             self.y + self.f2_power / 1.5 * math.sin(self.an)),
+            (self.x + self.f2_power/1.5 * math.cos(self.an),
+             self.y + self.f2_power/1.5 * math.sin(self.an)),
             10
             )
 
@@ -166,7 +169,7 @@ class Gun:
 
 class Target:
 
-    def __init__(self, screen, points = 0):
+    def __init__(self, screen, points=0):
         self.screen = screen
         self.points = points
         self.new_target()
